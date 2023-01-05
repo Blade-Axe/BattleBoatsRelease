@@ -32,6 +32,7 @@ namespace ExplorableWorld
         public bool boattoggle; //specifies if ai boats are visible or not
 
 
+        //This declares the two main grids, initialises our essential classes, and then runs the main menu 
         public void Start() 
         {
             
@@ -69,6 +70,11 @@ namespace ExplorableWorld
             DisplayIntro();
 
         }
+
+
+
+        //Menus
+
         private void DisplayIntro()
         {
             string prompt = @"
@@ -108,6 +114,8 @@ namespace ExplorableWorld
             Environment.Exit(0);
         }
 
+
+        //Main settings menu and subcategories
         void Settings()
         {
             Clear();
@@ -161,6 +169,11 @@ namespace ExplorableWorld
                 Settings();
             }
         }
+
+
+
+        //Main instructions menu and subcategories
+
         private void Instructions()
         {
             Clear();
@@ -270,6 +283,14 @@ Repeat until you either win or lose.");
                 Instructions();
             }
         }
+
+
+
+
+
+        //The brains of the operation, aka essential ai boat placement, and player movement handling
+
+
         private void HandleAiInput()
         {
             if (playermovescount > 0)
@@ -433,6 +454,10 @@ Repeat until you either win or lose.");
                     break;
             }
         }
+
+
+        //Game Statistics
+
         private void Stats()
         {
             SetCursorPosition(2, 22);
@@ -442,6 +467,11 @@ Repeat until you either win or lose.");
             WriteLine($"  Turns Taken: {playermovescount}");
             WriteLine($"  Ai Turns Taken: {aimovescount}");
         }
+
+
+
+        //Game endings, aka win or lose
+
         private void DisplayWinOutro()
         {
             Clear();
@@ -496,6 +526,12 @@ $$\     $$\                         $$\      $$\                     $$\
             ReadKey(true);
             Environment.Exit(0);
         }
+
+
+
+
+        //Brings everything together here in order to draw to the screen and run the main game loop
+
         private void DrawFrame() //collects all elements together and draws them to the screen
         {
             Clear();
