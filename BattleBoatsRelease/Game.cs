@@ -205,7 +205,7 @@ namespace ExplorableWorld
                 BackgroundColor = ConsoleColor.White;
                 WriteLine("Controls:\n");
                 ResetColor();
-                WriteLine(@"Movement: Use the arrow keys (←, →, ↑, ↓) in menus or in the game, wasd also works here. Press enter to place boats or use a menu.");
+                WriteLine(@"Movement: Use the arrow keys (←, →, ↑, ↓) in menus or in the game, wasd also works here. Press enter to place boats or use a menu. Pressing Escape while in game will take you to the main menu, and pressing 'new game' will return you to your current game.");
                 ForegroundColor = ConsoleColor.Black;
                 BackgroundColor = ConsoleColor.White;
                 WriteLine("\nPress any key to return to the previous menu.");
