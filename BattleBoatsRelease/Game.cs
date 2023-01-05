@@ -274,7 +274,7 @@ Repeat until you either win or lose.");
                 BackgroundColor = ConsoleColor.White;
                 WriteLine("About the Game:\n");
                 ResetColor();
-                WriteLine(@"Made as part of homework for Hills Road. :)");
+                WriteLine(@"licensed under GPL 3, Here is the github repository: https://github.com/Blade-Axe/BattleBoatsRelease");
                 ForegroundColor = ConsoleColor.Black;
                 BackgroundColor = ConsoleColor.White;
                 WriteLine("\nPress any key to return to the previous menu.");
