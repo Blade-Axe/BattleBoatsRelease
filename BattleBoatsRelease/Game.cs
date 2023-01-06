@@ -24,11 +24,11 @@ namespace ExplorableWorld
         private AiPlayer CurrentAiPlayer;
         string[,] grid;
         string[,] aigrid;
-        public int boatcount = 0;
-        int playermovescount = 0; 
+        public int BoatCount = 0;
+        int PlayerMovesCount = 0; 
         int aiboatcount = 0; //specifies how many boats the ai has.
-        int aimovescount = 0; //specifies how many moves the ai has made
-        int enemyshipskilled = 0; //specifies how many of the ai ships you have killed - used for declaring a winner
+        int AiMovesCount = 0; //specifies how many moves the ai has made
+        int EnemyShipsSunk = 0; //specifies how many of the ai ships you have killed - used for declaring a winner
         int playershipskilled = 0; //specifies how many of your ships have been killed by the ai - used for declaring a winner
         public bool boattoggle; //specifies if ai boats are visible or not
 
@@ -275,7 +275,7 @@ Repeat until you either win or lose.");
                 BackgroundColor = ConsoleColor.White;
                 WriteLine("About the Game:\n");
                 ResetColor();
-                WriteLine(@"licensed under GPL 3, Here is the github repository: https://github.com/Blade-Axe/BattleBoatsRelease");
+                WriteLine(@"Licensed under GPL 3, Here is the github repository: https://github.com/Blade-Axe/BattleBoatsRelease");
                 ForegroundColor = ConsoleColor.Black;
                 BackgroundColor = ConsoleColor.White;
                 WriteLine("\nPress any key to return to the previous menu.");
@@ -294,7 +294,7 @@ Repeat until you either win or lose.");
 
         private void HandleAiInput()
         {
-            if (playermovescount > 0)
+            if (PlayerMovesCount > 0)
             {
                 while (true)
                 {
@@ -303,7 +303,7 @@ Repeat until you either win or lose.");
                     string elementAtAiPos = MyWorld.GetElementAt(new_x, new_y);
                     if (elementAtAiPos == "~")
                     {
-                        aimovescount++;
+                        AiMovesCount++;
                         grid[new_y, new_x] = "#";
                         break;
                     }
@@ -315,7 +315,7 @@ Repeat until you either win or lose.");
                             menuMusic.LoadAsync();
                             menuMusic.Play();
                         }
-                        aimovescount++;
+                        AiMovesCount++;
                         playershipskilled++;
                         grid[new_y, new_x] = "X";
                         break;
@@ -369,20 +369,20 @@ Repeat until you either win or lose.");
             {
                 case ConsoleKey.Enter:
                     
-                    if (boatcount == 5)
+                    if (BoatCount == 5)
                     {
                         string elementAtPlayerPos = MyAiWorld.GetElementAt(CurrentPlayer.X, CurrentPlayer.Y);
                         if (elementAtPlayerPos == "~")
                         {
                             HandleAiInput();
-                            playermovescount++;
+                            PlayerMovesCount++;
                             aigrid[CurrentPlayer.Y, CurrentPlayer.X] = "#";
                         }
                         else if (elementAtPlayerPos == "@")
                         {
                             HandleAiInput();
-                            playermovescount++;
-                            enemyshipskilled++;
+                            PlayerMovesCount++;
+                            EnemyShipsSunk++;
                             if (OperatingSystem.IsWindows())
                             {
                                 SoundPlayer menuMusic = new SoundPlayer("placement.wav");
@@ -412,7 +412,7 @@ Repeat until you either win or lose.");
                         string elementAtPlayerPos = MyWorld.GetElementAt(CurrentPlayer.X, CurrentPlayer.Y);
                         if (elementAtPlayerPos == "~")
                         {
-                            boatcount++;
+                            BoatCount++;
                             grid[CurrentPlayer.Y, CurrentPlayer.X] = "@";
                         }
                         break;
@@ -537,10 +537,10 @@ Repeat until you either win or lose.");
         {
             SetCursorPosition(2, 22);
             WriteLine("\n  Statistics: \n");
-            WriteLine($"  Boats Placed: {boatcount}/5");
-            WriteLine($"  Enemy Boats Killed: {enemyshipskilled}/5");
-            WriteLine($"  Turns Taken: {playermovescount}");
-            WriteLine($"  Ai Turns Taken: {aimovescount}");
+            WriteLine($"  Boats Placed: {BoatCount}/5");
+            WriteLine($"  Enemy Boats Sunk: {EnemyShipsSunk}/5");
+            WriteLine($"  Turns Taken: {PlayerMovesCount}");
+            WriteLine($"  Ai Turns Taken: {AiMovesCount}");
         }
 
 
@@ -574,8 +574,8 @@ $$\     $$\                         $$\      $$\                     $$\
             ForegroundColor = ConsoleColor.Yellow;
             WriteLine("  Statistics: \n");
             ResetColor();
-            WriteLine($"  Enemy Boats Killed: {enemyshipskilled}/5");
-            WriteLine($"  Turns Taken: {playermovescount}");
+            WriteLine($"  Enemy Boats Killed: {EnemyShipsSunk}/5");
+            WriteLine($"  Turns Taken: {PlayerMovesCount}");
             WriteLine("\n  Thanks for playing! \n  Press E to return to exit.");
            
             Thread.Sleep(5000);
@@ -610,8 +610,8 @@ $$\     $$\                         $$\      $$\                     $$\
             ForegroundColor = ConsoleColor.Yellow;
             WriteLine("  Statistics: \n");
             ResetColor();
-            WriteLine($"  Enemy Boats Killed: {enemyshipskilled}/5");
-            WriteLine($"  Turns Taken: {playermovescount}");
+            WriteLine($"  Enemy Boats Killed: {EnemyShipsSunk}/5");
+            WriteLine($"  Turns Taken: {PlayerMovesCount}");
             WriteLine("\n  Thanks for playing! \n  Press E to return to exit.");
 
             Thread.Sleep(5000);
@@ -630,7 +630,7 @@ $$\     $$\                         $$\      $$\                     $$\
             Clear();
             MyWorld.Draw();
             MyAiWorld.Draw(boattoggle);
-            CurrentPlayer.Draw(boatcount);
+            CurrentPlayer.Draw(BoatCount);
             CurrentAiPlayer.Draw();
             Stats();
         }
@@ -652,7 +652,7 @@ $$\     $$\                         $$\      $$\                     $$\
                 
 
                 // Check if player has killed all ai boats or vice versa and then end game
-                if (enemyshipskilled == 5)
+                if (EnemyShipsSunk == 5)
                 {
                     break;
                 }
@@ -666,7 +666,7 @@ $$\     $$\                         $$\      $$\                     $$\
 
                 
             }
-            if (enemyshipskilled == 5)
+            if (EnemyShipsSunk == 5)
             {
                 DisplayWinOutro();
             }

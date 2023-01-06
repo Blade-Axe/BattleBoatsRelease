@@ -23,10 +23,10 @@ namespace ExplorableWorld
             PlayerColor = ConsoleColor.Yellow; //colour of icon
         }
         
-        public void Draw(int boatcount) //gets boatcount from list of public variables and checks if its less than 5,
+        public void Draw(int BoatCount) //gets BoatCount from list of public variables and checks if its less than 5,
                                         //and if so set the cursor to player board, if its larger move cursor to ai board.
         {
-            if (boatcount < 5)
+            if (BoatCount < 5)
             {
                 ForegroundColor = PlayerColor;
                 SetCursorPosition(2 * X + 2, Y + 14);
