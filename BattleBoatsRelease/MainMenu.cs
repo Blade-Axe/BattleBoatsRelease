@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
+using System.Media;
 
 namespace BattleBoats
 {
@@ -65,6 +66,26 @@ namespace BattleBoats
 
                 if (keyPressed == ConsoleKey.UpArrow)
                 {
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
+                    SelectedIndex--;
+                    if (SelectedIndex == -1)
+                    {
+                        SelectedIndex = Options.Length - 1;
+                    }
+                }
+                else if (keyPressed == ConsoleKey.W)
+                {
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     SelectedIndex--;
                     if (SelectedIndex == -1)
                     {
@@ -73,6 +94,26 @@ namespace BattleBoats
                 }
                 else if (keyPressed == ConsoleKey.DownArrow)
                 {
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
+                    SelectedIndex++;
+                    if (SelectedIndex == Options.Length)
+                    {
+                        SelectedIndex = 0;
+                    }
+                }
+                else if (keyPressed == ConsoleKey.S)
+                {
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     SelectedIndex++;
                     if (SelectedIndex == Options.Length)
                     {
@@ -81,6 +122,12 @@ namespace BattleBoats
                 }
 
             } while (keyPressed != ConsoleKey.Enter);
+            if (OperatingSystem.IsWindows())
+            {
+                SoundPlayer menuMusic = new SoundPlayer("selected.wav");
+                menuMusic.LoadAsync();
+                menuMusic.Play();
+            }
 
             return SelectedIndex;
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using System.Security.Cryptography.X509Certificates;
@@ -308,6 +309,12 @@ Repeat until you either win or lose.");
                     }
                     else if (elementAtAiPos == "@")
                     {
+                        if (OperatingSystem.IsWindows())
+                        {
+                            SoundPlayer menuMusic = new SoundPlayer("placement.wav");
+                            menuMusic.LoadAsync();
+                            menuMusic.Play();
+                        }
                         aimovescount++;
                         playershipskilled++;
                         grid[new_y, new_x] = "X";
@@ -361,6 +368,7 @@ Repeat until you either win or lose.");
             switch (key)
             {
                 case ConsoleKey.Enter:
+                    
                     if (boatcount == 5)
                     {
                         string elementAtPlayerPos = MyAiWorld.GetElementAt(CurrentPlayer.X, CurrentPlayer.Y);
@@ -375,6 +383,12 @@ Repeat until you either win or lose.");
                             HandleAiInput();
                             playermovescount++;
                             enemyshipskilled++;
+                            if (OperatingSystem.IsWindows())
+                            {
+                                SoundPlayer menuMusic = new SoundPlayer("placement.wav");
+                                menuMusic.LoadAsync();
+                                menuMusic.Play();
+                            }
                             aigrid[CurrentPlayer.Y, CurrentPlayer.X] = "X";
                         }
                         else if (elementAtPlayerPos == "X")
@@ -475,6 +489,12 @@ Repeat until you either win or lose.");
         private void DisplayWinOutro()
         {
             Clear();
+            if (OperatingSystem.IsWindows())
+            {
+                SoundPlayer menuMusic = new SoundPlayer("win.wav");
+                menuMusic.LoadAsync();
+                menuMusic.Play();
+            }
             string prompt = @"
 $$\     $$\                         $$\      $$\                     $$\ 
 \$$\   $$  |                        $$ | $\  $$ |                    $$ |
@@ -503,6 +523,12 @@ $$\     $$\                         $$\      $$\                     $$\
         private void DisplayLostOutro()
         {
             Clear();
+            if (OperatingSystem.IsWindows())
+            {
+                SoundPlayer menuMusic = new SoundPlayer("lost.wav");
+                menuMusic.LoadAsync();
+                menuMusic.Play();
+            }
             string prompt = @"
  __   __  _______  __   __    ___      _______  _______  _______ 
 |  | |  ||       ||  | |  |  |   |    |       ||       ||       |
