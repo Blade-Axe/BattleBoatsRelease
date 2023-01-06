@@ -403,6 +403,12 @@ Repeat until you either win or lose.");
                     }
                     else 
                     {
+                        if (OperatingSystem.IsWindows())
+                        {
+                            SoundPlayer menuMusic = new SoundPlayer("boatsplash.wav");
+                            menuMusic.LoadAsync();
+                            menuMusic.Play();
+                        }
                         string elementAtPlayerPos = MyWorld.GetElementAt(CurrentPlayer.X, CurrentPlayer.Y);
                         if (elementAtPlayerPos == "~")
                         {
@@ -411,26 +417,51 @@ Repeat until you either win or lose.");
                         }
                         break;
                     }
-
+                    
+                
                 case ConsoleKey.UpArrow:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     if (MyWorld.IsPositionWalkable(CurrentPlayer.X, CurrentPlayer.Y - 1))
                     {
                         CurrentPlayer.Y -= 1;
                     }
                     break;
                 case ConsoleKey.DownArrow:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     if (MyWorld.IsPositionWalkable(CurrentPlayer.X, CurrentPlayer.Y + 1))
                     {
                         CurrentPlayer.Y += 1;
                     }
                     break;
                 case ConsoleKey.LeftArrow:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     if (MyWorld.IsPositionWalkable(CurrentPlayer.X - 1, CurrentPlayer.Y))
                     {
                         CurrentPlayer.X -= 1;
                     }
                     break;
                 case ConsoleKey.RightArrow:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     if (MyWorld.IsPositionWalkable(CurrentPlayer.X + 1, CurrentPlayer.Y))
                     {
                         CurrentPlayer.X += 1;
@@ -438,30 +469,60 @@ Repeat until you either win or lose.");
                     break;
 
                 case ConsoleKey.W:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     if (MyWorld.IsPositionWalkable(CurrentPlayer.X, CurrentPlayer.Y - 1))
                     {
                         CurrentPlayer.Y -= 1;
                     }
                     break;
                 case ConsoleKey.S:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     if (MyWorld.IsPositionWalkable(CurrentPlayer.X, CurrentPlayer.Y + 1))
                     {
                         CurrentPlayer.Y += 1;
                     }
                     break;
                 case ConsoleKey.A:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     if (MyWorld.IsPositionWalkable(CurrentPlayer.X - 1, CurrentPlayer.Y))
                     {
                         CurrentPlayer.X -= 1;
                     }
                     break;
                 case ConsoleKey.D:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     if (MyWorld.IsPositionWalkable(CurrentPlayer.X + 1, CurrentPlayer.Y))
                     {
                         CurrentPlayer.X += 1;
                     }
                     break;
                 case ConsoleKey.Escape:
+                    if (OperatingSystem.IsWindows())
+                    {
+                        SoundPlayer menuMusic = new SoundPlayer("hover.wav");
+                        menuMusic.LoadAsync();
+                        menuMusic.Play();
+                    }
                     DisplayIntro();
                     break;
                 default: 
@@ -515,9 +576,12 @@ $$\     $$\                         $$\      $$\                     $$\
             ResetColor();
             WriteLine($"  Enemy Boats Killed: {enemyshipskilled}/5");
             WriteLine($"  Turns Taken: {playermovescount}");
-            WriteLine("\n  Thanks for playing! \n  Press any key to return to exit.");
+            WriteLine("\n  Thanks for playing! \n  Press E to return to exit.");
+           
+            Thread.Sleep(5000);
+
             ReadKey(true);
-            Environment.Exit(0);
+            QuitGame();
         }
 
         private void DisplayLostOutro()
@@ -548,9 +612,12 @@ $$\     $$\                         $$\      $$\                     $$\
             ResetColor();
             WriteLine($"  Enemy Boats Killed: {enemyshipskilled}/5");
             WriteLine($"  Turns Taken: {playermovescount}");
-            WriteLine("\n  Thanks for playing! \n  Press any key to return to exit.");
+            WriteLine("\n  Thanks for playing! \n  Press E to return to exit.");
+
+            Thread.Sleep(5000);
+
             ReadKey(true);
-            Environment.Exit(0);
+            QuitGame();
         }
 
 
