@@ -22,9 +22,9 @@ namespace ExplorableWorld
         }
 
         // y = row, x = col
-        public void Draw(bool boattoggle)
+        public void Draw(bool BoatToggle)
         {
-            showboats = boattoggle; //allows for the visibility of boats to be set in the program via the settings page
+            showboats = BoatToggle; //allows for the visibility of boats to be set in the program via the settings page
 
             for (int y = 0; y < Rows; y++)
             {

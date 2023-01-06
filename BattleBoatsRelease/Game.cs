@@ -26,11 +26,11 @@ namespace ExplorableWorld
         string[,] aigrid;
         public int BoatCount = 0;
         int PlayerMovesCount = 0; 
-        int aiboatcount = 0; //specifies how many boats the ai has.
+        int AiBoatCount = 0; //specifies how many boats the ai has.
         int AiMovesCount = 0; //specifies how many moves the ai has made
         int EnemyShipsSunk = 0; //specifies how many of the ai ships you have killed - used for declaring a winner
-        int playershipskilled = 0; //specifies how many of your ships have been killed by the ai - used for declaring a winner
-        public bool boattoggle; //specifies if ai boats are visible or not
+        int PlayerShipsSunk = 0; //specifies how many of your ships have been killed by the ai - used for declaring a winner
+        public bool BoatToggle; //specifies if ai boats are visible or not
 
 
         //This declares the two main grids, initialises our essential classes, and then runs the main menu 
@@ -160,8 +160,8 @@ namespace ExplorableWorld
             string converttobool = ReadLine().ToLower();
             if (converttobool == "true")
             {
-                boattoggle = Convert.ToBoolean(converttobool);
-                WriteLine($"\nAi Boat Visibility is now: {boattoggle}\n\nPress anything to return...");
+                BoatToggle = Convert.ToBoolean(converttobool);
+                WriteLine($"\nAi Boat Visibility is now: {BoatToggle}\n\nPress anything to return...");
                 ReadKey(true);
                 Settings();
             }
@@ -316,7 +316,7 @@ Repeat until you either win or lose.");
                             menuMusic.Play();
                         }
                         AiMovesCount++;
-                        playershipskilled++;
+                        PlayerShipsSunk++;
                         grid[new_y, new_x] = "X";
                         break;
                     }
@@ -330,7 +330,7 @@ Repeat until you either win or lose.");
             {
                 while (true)
                 {
-                    if (aiboatcount != 5)
+                    if (AiBoatCount != 5)
                     {
                         for (int i = 0; i < 5; i++)
                         {
@@ -342,7 +342,7 @@ Repeat until you either win or lose.");
                                 string elementAtAiPos = MyAiWorld.GetElementAt(new_x, new_y);
                                 if (elementAtAiPos == "~")
                                 {
-                                    aiboatcount++;
+                                    AiBoatCount++;
                                     aigrid[new_y, new_x] = "@";
                                     break;
                                 }
@@ -629,7 +629,7 @@ $$\     $$\                         $$\      $$\                     $$\
         {
             Clear();
             MyWorld.Draw();
-            MyAiWorld.Draw(boattoggle);
+            MyAiWorld.Draw(BoatToggle);
             CurrentPlayer.Draw(BoatCount);
             CurrentAiPlayer.Draw();
             Stats();
@@ -656,7 +656,7 @@ $$\     $$\                         $$\      $$\                     $$\
                 {
                     break;
                 }
-                else if (playershipskilled == 5) 
+                else if (PlayerShipsSunk == 5) 
                 {
                     break;
                 }
@@ -670,7 +670,7 @@ $$\     $$\                         $$\      $$\                     $$\
             {
                 DisplayWinOutro();
             }
-            else if (playershipskilled == 5)
+            else if (PlayerShipsSunk == 5)
             {
                 DisplayLostOutro();
             }
