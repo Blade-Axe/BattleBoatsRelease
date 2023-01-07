@@ -11,8 +11,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
+using System.Drawing;
+using System.IO;
+using System.Reflection;
 
-namespace ExplorableWorld
+namespace BattleBoats
 {
     public class Game
     {

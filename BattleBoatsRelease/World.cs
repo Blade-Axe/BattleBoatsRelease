@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
 
-namespace ExplorableWorld
+namespace BattleBoats
 {
     class World
     {

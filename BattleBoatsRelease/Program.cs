@@ -1,6 +1,6 @@
 ﻿using static System.Console;
 
-namespace ExplorableWorld
+namespace BattleBoats
 {
     internal class Program
     {
